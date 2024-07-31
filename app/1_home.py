@@ -38,9 +38,6 @@ Não se surpreenda se algum candidato aparecer mais de uma vez na listagem. Noss
 Esperamos que esta aplicação o ajude a selecionar o melhor candidato para sua empresa!
 """)
 
-# Adicionar o caminho do diretório etl ao sys.path para que possamos importar o módulo etl
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 # Importa o módulo etl
 from pipeline import main, load_sheet_data, authenticate_with_google_sheets, transform_dataframe
 
