@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "open2work"
+version = "0.1.0"
+description = ""
+authors = ["Vanessa Gaigher <vanessa.mat.sedu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.9"
+numpy = "^2.0.0"
+matplotlib = "^3.9.1"
+seaborn = "^0.13.2"
+gspread = "^6.1.2"
+streamlit = "^1.36.0"
+wordcloud = "^1.9.3"
+oauth2client = "^4.1.3"
+pandas = "^2.2.2"
+plotly = "^5.23.0"
+openpyxl = "^3.1.5"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
