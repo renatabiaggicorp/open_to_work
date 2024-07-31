@@ -31,6 +31,7 @@ Esta aplicação foi desenvolvida especialmente para você, que busca candidatos
 2. **Painel de Candidatos**:
    - Filtre sua própria lista de candidatos.
    - Use os filtros na aba esquerda para criar uma listagem personalizada.
+   - **Sobre os filtros** : Os filtros foram pensados para que você possa rankear os candidados de acordo com o número de ferramentas que eles dominam. Quanto mais ferramentas selecionadas por vocês, o candidato tiver, maior será a colocação dele na listagem de candidatos.
 
 **Nota Importante**:
 Não se surpreenda se algum candidato aparecer mais de uma vez na listagem. Nossos alunos possuem a bagagem técnica necessária para exercer múltiplos cargos (por exemplo, Analista de Dados ou Cientista de Dados), o que pode resultar em um mesmo candidato aparecendo em listagens de diferentes cargos pretendidos.
