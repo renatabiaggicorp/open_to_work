@@ -37,21 +37,21 @@ cd Dashboard_Candidates
 ```
 ### Setting the correct Python version using pyenv:
 
-pyenv install 3.11.9
-pyenv local 3.11.9
+```pyenv install 3.11.9```
+```pyenv local 3.11.9```
 
 ### Setting poetry to Python in 3.11.9 version and activate the virtual enviroment:
 
-poetry env use 3.11.9
-poetry shell
+```poetry env use 3.11.9```
+```poetry shell```
 
 ### Install all project dependencies: 
 
-poetry install
+```poetry install```
 
 ### Run localy the app streamlit
 
-poetry run streamlit app/1_home.py
+```poetry run streamlit run app/1_home.py```
 
 ### Secrets.toml
 
