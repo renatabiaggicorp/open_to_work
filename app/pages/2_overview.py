@@ -135,9 +135,23 @@ col2.markdown('---')
 
 # Grafico Skills 
 col2.markdown("##### Principais Skills dos Candidatos")
-# Gráfico de Barras Horizontal para Skills Dominadas
-skills_series = data_transformed['Skills Dominadas'].str.split(', ').explode().value_counts()
-skills_series = skills_series.sort_values(ascending= True)
+
+skill_mapping = {
+    'Estatística básica (descritiva)': 'Estatística',
+    'Estatística Avançada (testes de hipótese/ regressão)': 'Estatística'
+}
+def consolidate_skills(skill):
+    skills = skill.split(', ')
+    consolidated_skills = [skill_mapping.get(s, s) for s in skills]
+    return ', '.join(consolidated_skills)
+
+data_transformed['Skills Dominadas Consolidada'] = data_transformed['Skills Dominadas'].apply(consolidate_skills)
+
+# Aplicar a função à coluna 'Skills Dominadas'
+skills_series = data_transformed['Skills Dominadas Consolidada'].str.split(', ').explode().value_counts()
+skills_series = skills_series.sort_values(ascending=True)
+
+# Grafico de barras horizontais
 fig_skills = px.bar(skills_series, 
                     x=skills_series.values, 
                     y=skills_series.index, 

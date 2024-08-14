@@ -11,7 +11,7 @@ def authenticate_with_google_sheets():
 
     # Lendo o arquivo secrets.toml
     try:
-        service_account_info = st.secrets["service_account"]
+        service_account_info = st.secrets["google_credentials"]
         credentials = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scope)
         return gspread.authorize(credentials)
     except Exception as e:
@@ -20,13 +20,17 @@ def authenticate_with_google_sheets():
 
 # Função para carregar dados de uma planilha específica
 def load_sheet_data(sheet_url, sheet_name):
-        gc = authenticate_with_google_sheets()
-        sh = gc.open_by_url(sheet_url)
-        worksheet = sh.worksheet(sheet_name)
-        data = worksheet.get_all_records()
-        return pd.DataFrame(data)
+    gc = authenticate_with_google_sheets()
+    sh = gc.open_by_url(sheet_url)
+    worksheet = sh.worksheet(sheet_name)
+    data = worksheet.get_all_records()
+    df = pd.DataFrame(data)
     
-
+    if df.empty:
+        st.error("Erro: A planilha está vazia ou os dados não foram carregados corretamente.")
+        return None
+    return df
+    
 def main():
     if "sheets" in st.secrets:
         NAME = st.secrets["sheets"]["name"]
@@ -65,12 +69,16 @@ def transform_dataframe(df : pd.DataFrame):
     if 'Data/Hora' in df.columns:
         df = df.sort_values('Data/Hora', ascending=False).drop_duplicates('Email')
         
-    # input "Não respondido" into Nível de Inglês column
-    df['Nível de Inglês'] = df['Nível de Inglês'].fillna('Não respondido')
-    df['Descrição da Experiência'] = df['Descrição da Experiência'].fillna('Sem experiência')
-    df['Regime de Estudo'] = df['Regime de Estudo'].fillna('Não respondido')
-    df['Formação Acadêmica'] = df['Formação Acadêmica'].fillna('Não respondido')
-      
+    # Preencher algumas colunas com valores nulos
+    default_values = {
+    'Nível de Inglês': 'Não respondido',
+    'Descrição da Experiência': 'Sem experiência',
+    'Regime de Estudo': 'Não respondido',
+    'Formação Acadêmica': 'Não respondido'
+}
+
+    # Preencher os valores nulos de acordo com o dicionário
+    df.fillna(value=default_values, inplace=True)
         
     # slip desired position by ,
     df['Cargo Pretendido'] = df['Cargo Pretendido'].str.split(',').apply(lambda x: [i.strip() for i in x] if isinstance(x, list) else x)
@@ -101,7 +109,11 @@ def transform_dataframe(df : pd.DataFrame):
           df.at[index, 'País'] = fill_value if pd.isna(row['País']) else row['País']
           df.at[index, 'Cidade'] = fill_value if pd.isna(row['Cidade']) else row['Cidade']
           df.at[index, 'Estado'] = fill_value if pd.isna(row['Estado']) else row['Estado']
-    
+          
+    # Garantir que a coluna seja do tipo string e remover o caractere '+'
+    df['Telefone'] = df['Telefone'].astype(str).str.replace('+', '', regex=False)
+
+  
     return df
 
 if __name__ == "__main__":
