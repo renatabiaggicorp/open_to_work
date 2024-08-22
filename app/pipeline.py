@@ -47,7 +47,7 @@ def transform_dataframe(df : pd.DataFrame):
         'Email': 'Email',
         'Telefone (com DDD)': 'Telefone',
         'Link do linkedin': 'LinkedIn',
-        'Qual país e cidade você mora? Coloque o estado entre parêntesis\nEx: Brasil - Piracicaba (SP) ': 'Localização',
+        'Qual país e cidade você mora? Coloque exatamente no formato abaixo, com País - Cidade (Estado) e o estado entre parêntesis.\nEx: Brasil - Piracicaba (SP)':'Localização',
         'Tem disponibilidade de mudança?': 'Disponibilidade de Mudança',
         'Existe alguma restrição quanto ao regime de trabalho?': 'Regime de Trabalho',
         'Formação acadêmica. Coloque o curso que fez + faculdade + ano de conclusão (ou previsão de conclusão). Se tiver pós-graduação ou mestrado, coloque também! Separe-os com ponto e vírgula.\nSe nunca fez algum tipo de graduação e nem está fazendo, coloque NA.\n \nUse o modelo abaixo:\nBacharelado engenharia química - Unicamp - conclusão 2019;\nPós-graduação data science - Unicamp - conclusão 2020; \nMestrado em data sciece para marketing - Unicamp - conclusão 2025': 'Formação Acadêmica',
