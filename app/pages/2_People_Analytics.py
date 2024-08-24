@@ -12,7 +12,13 @@ data_transformed = st.session_state["data"]
 
 
 # Page Title
-st.title('Overview dos Candidatos')
+st.title('People Analytics Dashboard')
+st.markdown("""
+Veja abaixo as principais características dos nossos candidatos. Nosso foco foi em dar uma visão geral, a você recrutador, das estatísticas gerais acerca da disponibilidade de mudança, cargos pretendidos, ferramentas mais utilizadas pelos nossos talentos e modalidade de trabalho pretendida.
+
+**Sabemos que pode encontrar a pessoa que você precisa bem aqui!**
+""")
+
 
 # Define color pallet
 colors = ['#4A7069', '#D9D1C7', '#F4CA49', '#D97C0B', '#A65208']
@@ -230,5 +236,7 @@ col3.markdown('# ')
 col3.markdown(html, unsafe_allow_html=True)
 
 
-
+st.markdown("""
+**NOTA IMPORATANTE**: As estatísticas mencionadas não incluem candidatos únicos. Nossos alunos possuem a formação técnica necessária para atuar em diversos cargos. Portanto, nossa abordagem é sempre alinhada com o cargo específico almejado.
+""")
 

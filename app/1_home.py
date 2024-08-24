@@ -62,8 +62,7 @@ st.markdown(""" Nosso banco de dados inclui alunos dos cursos **EBA - Estatísti
 
 **Nota Importante**:
 - Não se surpreenda se algum candidato aparecer mais de uma vez na listagem. Nossos alunos possuem a bagagem técnica necessária para exercer múltiplos cargos (por exemplo, Analista de Dados ou Cientista de Dados), o que pode resultar em um mesmo candidato aparecendo em listagens de diferentes cargos pretendidos.
-- Abaixo você encontrará um botão para **"Atualizar Dados"**, caso nas páginas seguintes, ocorra algum problema com o carregamento, basta clicar neste botão e tentar acessar novamente. Caso o erro persista, pode entrar em contacto com uma das autoras.
-Esperamos que esta aplicação o ajude a selecionar o melhor candidato para sua empresa!
+
 """)
 
 
