@@ -5,11 +5,11 @@ from oauth2client.service_account import ServiceAccountCredentials
 import re
 
 
-# Configuração da autenticação com Google Sheets
+# Configuring authentication with Google Sheets
 def authenticate_with_google_sheets():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
-    # Lendo o arquivo secrets.toml
+    # reading secrets.toml
     try:
         service_account_info = st.secrets["google_credentials"]
         credentials = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scope)
@@ -18,7 +18,7 @@ def authenticate_with_google_sheets():
         st.error(f"Erro na autenticação: {e}")
         raise
 
-# Função para carregar dados de uma planilha específica
+# Function to load data from a specific worksheet
 def load_sheet_data(sheet_url, sheet_name):
     gc = authenticate_with_google_sheets()
     sh = gc.open_by_url(sheet_url)
@@ -69,7 +69,7 @@ def transform_dataframe(df : pd.DataFrame):
     if 'Data/Hora' in df.columns:
         df = df.sort_values('Data/Hora', ascending=False).drop_duplicates('Email')
         
-    # Preencher algumas colunas com valores nulos
+    # defiine dictionary to fill null values
     default_values = {
     'Nível de Inglês': 'Não respondido',
     'Descrição da Experiência': 'Sem experiência',
@@ -77,7 +77,7 @@ def transform_dataframe(df : pd.DataFrame):
     'Formação Acadêmica': 'Não respondido'
 }
 
-    # Preencher os valores nulos de acordo com o dicionário
+    # fill null values
     df.fillna(value=default_values, inplace=True)
         
     # slip desired position by ,
@@ -110,7 +110,7 @@ def transform_dataframe(df : pd.DataFrame):
           df.at[index, 'Cidade'] = fill_value if pd.isna(row['Cidade']) else row['Cidade']
           df.at[index, 'Estado'] = fill_value if pd.isna(row['Estado']) else row['Estado']
           
-    # Garantir que a coluna seja do tipo string e remover o caractere '+'
+    # ensure that the column will be string and removing "+" character
     df['Telefone'] = df['Telefone'].astype(str).str.replace('+', '', regex=False)
 
   
