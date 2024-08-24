@@ -39,11 +39,11 @@ if st.button("Atualizar Dados"):
    except Exception as e:
       st.error(f"Erro ao carregar e transformar os dados: {e}")
       
-st.markdown("""No canto superior direito de cada aba, você verá uma mensagem de "Running", isto significa que os dados estão em processo de carregamento. Isto pode levar alguns segundos para que a aba **People Analytics** ou **Our Talents** sejam atualizadas. """)
+st.markdown("""No canto superior direito de cada aba, você verá uma mensagem de "Running", o que significa que os dados estão em processo de carregamento. Isto pode levar alguns segundos para que a aba **People Analytics** ou **Our Talents** sejam atualizadas. """)
 
 
 st.markdown("### Sobre a nossa aplicação")
-st.markdown()
+st.markdown("")
 st.markdown(""" Nosso banco de dados inclui alunos dos cursos **EBA - Estatística do Básico ao Avançado** e **PED - Preparatório para Entrevistas em Dados**, ministrados pela Tech Lead e Cientista de Dados Renata Biaggi.
 
 **Funcionalidades da Aplicação:**
@@ -69,6 +69,10 @@ Esperamos que esta aplicação o ajude a selecionar o melhor candidato para sua 
 
     
 st.sidebar.write("##")
-st.sidebar.markdown("Desenvolvido por :")
+st.sidebar.markdown("**Quer fazer parte da nossa rede de alunos?**")
+st.sidebar.markdown("**[Conheça o PED e o EBA](https://renatabiaggi.com/)**")
+
+st.sidebar.write("#")
+st.sidebar.markdown("**Esta aplicação foi desenvolvida por :**")
 st.sidebar.markdown("**[Vanessa Gaigher](https://www.linkedin.com/in/vanessagaigher/)**")
-st.sidebar.markdown("**[Renata Biaggi](https://renatabiaggi.com/)**") 
+st.sidebar.markdown("**[Renata Biaggi](https://www.linkedin.com/in/renatabiaggi/)**")
