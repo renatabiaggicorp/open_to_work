@@ -26,8 +26,15 @@ data_transformed = data[['Nome_Completo',
                          'Estado']]
 
 # Title of the page
-st.title('Listagem de Candidatos')
+st.title('Our Talents')
+st.markdown("""
+            Chegou a hora de encontrar o seu candidato. Use os filtros que encontrará do lado esquerdo para selecionar a sua listagem de candidatos de acordo com os requisitos da vaga.\n
+            
+            Os filtros foram projetados para permitir que você classifique os candidatos com base na quantidade de ferramentas que eles dominam. Quanto mais ferramentas você selecionar e o candidato dominar, mais alta será a posição dele na lista de candidatos.\n
+            
+            Ao final, você poderá fazer o download da listagem dos candidados. Basta clicar no botão que encontrará ao final da página!""" )
 
+st.title('')
 # List of available positions and work modalities
 cargos_disponiveis = data_transformed['Cargo Pretendido'].unique()
 modalidades_disponiveis = data_transformed['Regime de Trabalho'].unique()
@@ -44,7 +51,7 @@ ferramentas_selecionadas = st.sidebar.multiselect('Selecione as ferramentas domi
 
 # Creating a new dataframe with the filtered values
 if not cargo_selecionado:
-    st.write("Nenhum cargo selecionado. Por favor, selecione pelo menos um cargo.")
+    st.write("**Nenhum cargo selecionado. Por favor, selecione pelo menos um cargo.**")
 else:
     df_cargos = data_transformed[data_transformed['Cargo Pretendido'].isin(cargo_selecionado)]
 
@@ -85,3 +92,7 @@ else:
                         data=excel_data,
                         file_name='candidatos.xlsx',
                         mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+
+st.title("")
+st.markdown("""
+**NOTA IMPORTANTE:** É possível que um mesmo candidato apareça mais de uma vez. Como mencionado anteriormente, o mesmo candidato pode concorrer a vagas em diferentes cargos e níveis de senioridade.""")
