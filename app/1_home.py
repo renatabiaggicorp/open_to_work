@@ -16,13 +16,14 @@ st.set_page_config(page_title="Open2Work- PED e EBA",
 
 # Title and header home page
 st.title(":rocket: Open2Work - PED e EBA")
-st.header("")
+st.title("")
 st.markdown("""
 ### Bem-vindo, Recrutador!
 
 Esta aplicação foi desenvolvida especialmente para você, que busca candidatos com o melhor fit para sua vaga.""")
 
 #Title for button
+st.markdown("##")
 st.markdown("""##### Carregamento de Dados""")
 st.markdown("""Clique no botão abaixo para carregar e armazenar os dados!""")
 
