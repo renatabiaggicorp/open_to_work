@@ -69,10 +69,10 @@ st.markdown(""" Nosso banco de dados inclui alunos dos cursos **EBA - Estatísti
 
     
 st.sidebar.write("##")
-st.sidebar.markdown("**Quer fazer parte da nossa rede de alunos?**")
-st.sidebar.markdown("**[Conheça o PED e o EBA](https://renatabiaggi.com/)**")
+st.sidebar.markdown("👥 **Quer fazer parte da nossa rede de alunos?  [Conheça o PED e o EBA](https://renatabiaggi.com/)**")
+
 
 st.sidebar.write("#")
-st.sidebar.markdown("**Esta aplicação foi desenvolvida por :**")
+st.sidebar.markdown("⚙️ **Esta aplicação foi desenvolvida por :**")
 st.sidebar.markdown("**[Vanessa Gaigher](https://www.linkedin.com/in/vanessagaigher/)**")
 st.sidebar.markdown("**[Renata Biaggi](https://www.linkedin.com/in/renatabiaggi/)**")
