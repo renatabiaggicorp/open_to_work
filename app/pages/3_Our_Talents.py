@@ -69,20 +69,27 @@ if cargo_selecionado:
         df_filtrado = df_filtrado[
     (df_filtrado['País'] == pais_selecionado) |
     (df_filtrado['Disponibilidade de Mudança'] == 'Sim - para outra cidade/estado ou país')]
-    else:
-        df_filtrado 
-    
+         
 
     if estado_selecionado:
         df_filtrado = df_filtrado[
             (df_filtrado['Estado'].isin(estado_selecionado)) |
-            (df_filtrado['Disponibilidade de Mudança'] == 'Sim - para outra cidade/estado')
+            (df_filtrado['Disponibilidade de Mudança'].isin([
+                'Sim - para outra cidade ou estado',
+                'Sim - para outra cidade/estado ou país'
+            ]))
         ]
+        
     if cidade_selecionada:
         df_filtrado = df_filtrado[
             (df_filtrado['Cidade'].isin(cidade_selecionada)) |
-            (df_filtrado['Disponibilidade de Mudança'] == 'Sim - para outra cidade')
+            (df_filtrado['Disponibilidade de Mudança'].isin([
+                'Sim - para outra cidade',
+                'Sim - para outra cidade ou estado',
+                'Sim - para outra cidade/estado ou país'
+            ]))
         ]
+             
    
     if modalidade_selecionada:
         df_filtrado = df_filtrado[df_filtrado['Regime de Trabalho'].isin(modalidade_selecionada)]
