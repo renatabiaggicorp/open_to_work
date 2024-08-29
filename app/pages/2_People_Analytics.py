@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from collections import Counter
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
@@ -147,18 +146,25 @@ skill_mapping = {
 def consolidate_skills(skill):
     skills = skill.split(', ')
     consolidated_skills = [skill_mapping.get(s, s) for s in skills]
-    return ', '.join(consolidated_skills)
+    return ', '.join(set(consolidated_skills))
 
 data_transformed['Skills Dominadas Consolidada'] = data_transformed['Skills Dominadas'].apply(consolidate_skills)
 
 # Apply the function from the 'Mastered Skills' column
 skills_series = data_transformed['Skills Dominadas Consolidada'].str.split(', ').explode().value_counts()
-skills_series = skills_series.sort_values(ascending=True)
+total_candidates = len(data_transformed)
+skills_percentage = round((skills_series / total_candidates) * 100,2)
+skills_percentage = skills_percentage.sort_values(ascending=True)
 
+# creating df
+df_skills_percentage = pd.DataFrame({
+    'Skill': skills_percentage.index,
+    'Percentual': skills_percentage.values
+})
 # Horizontal bar chart
-fig_skills = px.bar(skills_series, 
-                    x=skills_series.values, 
-                    y=skills_series.index, 
+fig_skills = px.bar(df_skills_percentage, 
+                    x='Percentual', 
+                    y='Skill', 
                     orientation='h',
                     color_discrete_sequence = ['#4A7069', '#D9D1C7', '#F4CA49']
                     )
