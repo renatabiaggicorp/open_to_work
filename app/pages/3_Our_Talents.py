@@ -4,6 +4,7 @@ from io import BytesIO
 
 # Load the data from session state
 data = st.session_state["data"]
+data = data[data['Divulgação'] == 'Sim']
 data_transformed = data[['Nome_Completo',
                          'Email',
                          'Telefone',
@@ -33,9 +34,13 @@ st.markdown("""
             
             Ao final, você poderá fazer o download da listagem dos candidados. Basta clicar no botão que encontrará ao final da página!""" )
 
+st.markdown("""
+            **Importante:** Ao filtrar candidatos por localidade, você poderá encontrar candidatos que ainda não residem na região selecionada, mas que têm disponibilidade para mudança de cidade, estado ou país. Mesmo que o candidato esteja em um local diferente, ele aparecerá na listagem se tiver indicado disponibilidade para a localidade desejada.""" )
+
 st.title('')
 
 # List of uniques values to buttons
+
 cargos_disponiveis = data_transformed['Cargo Pretendido'].unique()
 paises_disponiveis = data_transformed['País'].unique()
 paises_disponiveis = ['Selecione um País'] + list(paises_disponiveis)
@@ -51,6 +56,7 @@ ferramentas_disponiveis = sorted(set(
 
 
 # User interface: filters
+
 cargo_selecionado = st.sidebar.multiselect('Selecione o cargo pretendido', cargos_disponiveis)
 pais_selecionado = st.sidebar.selectbox('Selecione um País', paises_disponiveis)
 estado_selecionado = st.sidebar.multiselect('Selecione o Estado desejado (Opcional)', estados_disponiveis)

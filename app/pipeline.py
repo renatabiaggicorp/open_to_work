@@ -58,7 +58,8 @@ def transform_dataframe(df : pd.DataFrame):
         'Se você está estudando, qual é o regime?': 'Regime de Estudo',
         'Quais skills você já estudou/domina?': 'Skills Dominadas',
         'Qual dos meus cursos você cursa/cursou? Se for aluno de ambos, marque ambos': 'Cursos Cursados',
-        'Qual seu nível de inglês?': 'Nível de Inglês'
+        'Qual seu nível de inglês?': 'Nível de Inglês',
+        'Você permite que seus dados pessoais sejam compartilhados, para fins de recrutamento?':'Divulgação'
     })
     
     # transform Data/Hora type to datetime
@@ -68,18 +69,7 @@ def transform_dataframe(df : pd.DataFrame):
     # drop the duplicated rows keeping currently data
     if 'Data/Hora' in df.columns:
         df = df.sort_values('Data/Hora', ascending=False).drop_duplicates('Email')
-        
-    # defiine dictionary to fill null values
-    default_values = {
-    'Nível de Inglês': 'Não respondido',
-    'Descrição da Experiência': 'Sem experiência',
-    'Regime de Estudo': 'Não respondido',
-    'Formação Acadêmica': 'Não respondido'
-}
-
-    # fill null values
-    df.fillna(value=default_values, inplace=True)
-        
+                
     # slip desired position by ,
     df['Cargo Pretendido'] = df['Cargo Pretendido'].str.split(',').apply(lambda x: [i.strip() for i in x] if isinstance(x, list) else x)
     df = df.explode('Cargo Pretendido').reset_index(drop=True)
@@ -112,8 +102,27 @@ def transform_dataframe(df : pd.DataFrame):
           
     # ensure that the column will be string and removing "+" character
     df['Telefone'] = df['Telefone'].astype(str).str.replace('+', '', regex=False)
+    
+    #ensure some columns as string values
+    string_columns = [
+        'Divulgação',
+        'Nível de Inglês',
+        'Descrição da Experiência',
+        'Regime de Estudo',
+        'Formação Acadêmica'
+    ]
+    for column in string_columns:
+        if column in df.columns:
+            df[column] = df[column].astype(str)
 
-  
+    #fill null values
+    df['Divulgação'] = df['Divulgação'].replace('None', 'Sim')
+    df['Nível de Inglês'] = df['Nível de Inglês'].replace('None', 'Não respondido')
+    df['Descrição da Experiência'] = df['Descrição da Experiência'].replace('None', 'Sem experiência')
+    df['Regime de Estudo'] = df['Regime de Estudo'].replace('None', 'Não respondido')
+    df['Formação Acadêmica'] = df['Formação Acadêmica'].replace('None', 'Não respondido')
+    
+        
     return df
 
 if __name__ == "__main__":
