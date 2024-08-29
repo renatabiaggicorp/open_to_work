@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from collections import Counter
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
@@ -141,7 +142,7 @@ col2.markdown("##### Principais Skills dos Candidatos")
 
 skill_mapping = {
     'Estatística básica (descritiva)': 'Estatística',
-    'Estatística Avançada (testes de hipótese/ regressão)': 'Estatística'
+    'Estatística avançada (testes de hipótese/ regressão)': 'Estatística'
 }
 def consolidate_skills(skill):
     skills = skill.split(', ')
