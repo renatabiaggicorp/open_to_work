@@ -117,7 +117,7 @@ if cargo_selecionado:
     st.dataframe(df_final.reset_index(drop=True))
 
 else:
-    st.write("**Por favor, selecione pelo menos um cargo pretendido.**")
+    st.write("**Por favor, selecione pelo menos um cargo pretendido!**")
 
 # Function to convert DataFrame to Excel
 def to_excel(df):
